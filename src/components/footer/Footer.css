@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+
+.footer{
+   background: #222222;
+   padding: 50px;
+}
+
+.footer .footer_menu{
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  margin: 0 auto 25px;
+  justify-content: space-between;
+}
+
+.footer .footer_menu .title{
+  margin-bottom: 10px;
+  color: #adadad;
+}
+
+.footer .footer_menu ul li a{
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.footer .footer_menu ul li a:hover{
+  text-decoration: none;
+  color: rgb(231, 125, 125);
+  transition: all 0.3s ease;
+}
+
+.footer .social_media{
+  text-align: center;
+}
+
+.footer .social_media ul{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.footer .social_media ul li a{
+  display: block;
+  margin: 0 5px;
+  color: #fff;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 3px;
+}
+
+.footer .social_media ul li a:hover{
+  color: rgb(202, 82, 82);
+  transition: all 0.3s ease;
+}
+
+
+
+.footer .social_media{
+  color: #adadad;
+}
+
+@media (max-width:768px) {
+  .footer .footer_menu{
+    flex-direction: column;
+    width: 220px;
+    margin: 0 auto 25px;
+  }
+  .footer .footer_menu > div{
+    margin: 10px 0;
+  }
+  .footer .partners ul li a{
+    margin: 5px;
+  }
+}

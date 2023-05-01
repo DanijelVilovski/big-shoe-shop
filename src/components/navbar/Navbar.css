@@ -1,0 +1,81 @@
+.navbar {
+  background: #222222;
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.navbar .logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbar .navbar_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar .navbar_container .navbar_item {
+  margin-left: 40px;
+  margin-right: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.navbar .navbar_container .navbar_item:hover {
+  margin-left: 40px;
+  margin-right: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  color:  rgb(231, 125, 125);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar .login_btn a {
+  display: block;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 5px 15px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.navbar .login_btn a:hover {
+  border-color: rgb(231, 125, 125);
+  color:  rgb(231, 125, 125);
+}
+
+@media (max-width:768px) {
+  .navbar .logo{
+      font-size: 15px;
+    }
+
+  .navbar .navbar_container .navbar_item {
+    font-size: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .navbar .login_btn a {
+    display: block;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 2px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    font-size: 10px;
+    margin-left: 5px;
+  }
+}
