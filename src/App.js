@@ -1,49 +1,29 @@
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Footer from './components/footer/Footer';
+import Navbar from './components/navbar/Navbar';
+import Home from './pages/home/Home';
+import Cart from './pages/cart/Cart';
+import Products from './pages/products/Products';
+import About from './pages/about/About';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 
 function App() {
   return (
-    <div className="main_container">
-        <i className="fab fa-whatsapp"></i>     
-        <div className="item">
-            <div className="img_holder">
-            <img src="item_img1.jpg" alt="" />
-            </div>
-            <div className="item_info">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum est, voluptas cupiditate assumenda iure vero tempora fugiat. Unde blanditiis incidunt alias molestiae. Totam, laboriosam. Animi accusamus et labore sit nihil exercitationem provident odit nostrum ipsum, architecto deserunt eius veritatis qui enim modi impedit nemo quam quae voluptatibus aliquid possimus.
-            </div>
-        </div>  
-        <div className="item">
-            <div className="img_holder">
-            <img src="item_img2.jpg" alt="" />
-            </div>
-            <div className="item_info">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum est, voluptas cupiditate assumenda iure vero tempora fugiat. Unde blanditiis incidunt alias molestiae. Totam, laboriosam. Animi accusamus et labore sit nihil exercitationem provident odit nostrum ipsum, architecto deserunt eius veritatis qui enim modi impedit nemo quam quae voluptatibus aliquid possimus.
-            </div>
-        </div>  
-        <div className="item">
-            <div className="img_holder">
-            <img src="item_img3.png" alt="" />
-            </div>
-            <div className="item_info">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum est, voluptas cupiditate assumenda iure vero tempora fugiat. Unde blanditiis incidunt alias molestiae. Totam, laboriosam. Animi accusamus et labore sit nihil exercitationem provident odit nostrum ipsum, architecto deserunt eius veritatis qui enim modi impedit nemo quam quae voluptatibus aliquid possimus.
-            </div>
-        </div>  
-        <div className="item">
-            <div className="img_holder">
-            <img src="item_img4.jpg" alt="" />
-            </div>
-            <div className="item_info">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum est, voluptas cupiditate assumenda iure vero tempora fugiat. Unde blanditiis incidunt alias molestiae. Totam, laboriosam. Animi accusamus et labore sit nihil exercitationem provident odit nostrum ipsum, architecto deserunt eius veritatis qui enim modi impedit nemo quam quae voluptatibus aliquid possimus.
-            </div>
-        </div>  
-        <div className="item">
-            <div className="img_holder">
-            <img src="item_img5.jpg" alt="" />
-            </div>
-            <div className="item_info">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum est, voluptas cupiditate assumenda iure vero tempora fugiat. Unde blanditiis incidunt alias molestiae. Totam, laboriosam. Animi accusamus et labore sit nihil exercitationem provident odit nostrum ipsum, architecto deserunt eius veritatis qui enim modi impedit nemo quam quae voluptatibus aliquid possimus.
-            </div>
-        </div>  
+    <div className="App"> 
+        <Router>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/cart" element={<Cart />}/>
+                <Route path="/products" element={<Products />}/>
+                <Route path="/about" element={<About />}/>
+                <Route path="/login" element={<Login />}/>
+                <Route path="/register" element={<Register />}/>
+            </Routes>
+            <Footer />
+        </Router>
     </div>
   );
 }

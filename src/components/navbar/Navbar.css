@@ -18,12 +18,16 @@
   cursor: pointer;
 }
 
+.navbar .auth_buttons {
+  display: flex;
+}
+
 .navbar .navbar_container {
   display: flex;
   justify-content: space-between;
 }
 
-.navbar .navbar_container .navbar_item {
+.navbar .links_container .navbar_item {
   margin-left: 40px;
   margin-right: 40px;
   font-size: 18px;
@@ -31,7 +35,7 @@
   color: #fff;
 }
 
-.navbar .navbar_container .navbar_item:hover {
+.navbar .links_container .navbar_item:hover {
   margin-left: 40px;
   margin-right: 40px;
   font-size: 18px;
@@ -46,6 +50,7 @@
   color: #fff;
   border: 1px solid #fff;
   padding: 5px 15px;
+  margin: 0 5px 0 5px;
   border-radius: 3px;
   transition: all 0.3s ease;
 }
