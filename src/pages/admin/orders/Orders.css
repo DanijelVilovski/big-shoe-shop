@@ -1,0 +1,11 @@
+.orders_container {
+  padding: 50px;
+  margin-top: 60px;
+  display: flex;
+}
+
+.orders_table {
+  background: darkgrey;
+  height: 400;
+  width: 100%;
+}

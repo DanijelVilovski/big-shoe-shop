@@ -8,6 +8,10 @@ import Products from './pages/products/Products';
 import About from './pages/about/About';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import AdminCategories from './pages/admin/categories/AdminCategories';
+import Orders from './pages/admin/orders/Orders';
+import AdminProducts from './pages/admin/products/AdminProducts';
+import Users from './pages/admin/users/Users';
 
 function App() {
   return (
@@ -21,6 +25,10 @@ function App() {
                 <Route path="/about" element={<About />}/>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
+                <Route path="/admin/categories" element={<AdminCategories />}/>
+                <Route path="/admin/users" element={<Users />}/>
+                <Route path="/admin/products" element={<AdminProducts />}/>
+                <Route path="/admin/orders" element={<Orders />}/>
             </Routes>
             <Footer />
         </Router>

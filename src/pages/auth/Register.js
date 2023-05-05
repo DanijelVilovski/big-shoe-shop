@@ -47,32 +47,32 @@ export default function Register() {
 
     return (
         <div className="register_container">
-                <form onSubmit={handleSubmit}>
-                    <h3>Register</h3>
+                <form className="register_form" onSubmit={handleSubmit}>
+                    <h3 className="register_form_title" >Register</h3>
 
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder="" id="email" value={email}  onChange={e => setEmail(e.target.value)} required/>
-                    <span id="register-email-span"></span>
+                    <label className="register_form_label" htmlFor="email">Email</label>
+                    <input className="register_form_input" type="email" placeholder="" id="email" value={email}  onChange={e => setEmail(e.target.value)} required/>
+                    <span className="register_form_span" id="register-email-span"></span>
 
-                    <label htmlFor="username">Username</label>
-                    <input type="text" placeholder="" id="username" value={username} onChange={e => setUsername(e.target.value)} required/>
-                    <span id="register-username-span"></span>
+                    <label className="register_form_label" htmlFor="username">Username</label>
+                    <input className="register_form_input"  type="text" placeholder="" id="username" value={username} onChange={e => setUsername(e.target.value)} required/>
+                    <span className="register_form_span" id="register-username-span"></span>
 
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="" id="password" value={password} onChange={e => setPassword(e.target.value)} required/>
+                    <label className="register_form_label" htmlFor="password">Password</label>
+                    <input className="register_form_input"  type="password" placeholder="" id="password" value={password} onChange={e => setPassword(e.target.value)} required/>
 
                     <div className="login_row">
                         <div className="login_row_item">
-                            <label htmlFor="firstname">First Name</label>
-                            <input type="text" placeholder="" id="firstname" value={firstName} onChange={e => setFirstName(e.target.value)} required/>
+                            <label className="register_form_label" htmlFor="firstname">First Name</label>
+                            <input className="register_form_input"  type="text" placeholder="" id="firstname" value={firstName} onChange={e => setFirstName(e.target.value)} required/>
                         </div>
                         
                         <div className="login_row_item">
-                            <label htmlFor="lastname">Last Name</label>
-                            <input type="text" placeholder="" id="lastname" value={lastName} onChange={e => setLastName(e.target.value)} required/>
+                            <label className="register_form_label" htmlFor="lastname">Last Name</label>
+                            <input className="register_form_input"  type="text" placeholder="" id="lastname" value={lastName} onChange={e => setLastName(e.target.value)} required/>
                         </div>  
                     </div>
-                    <button type="submit">Register</button>
+                    <button className="register_form_button" type="submit">Register</button>
                 </form>
         </div>
     )

@@ -1,6 +1,7 @@
 import './Navbar.css';
 import React from 'react'
 import { Link } from 'react-router-dom';
+import AdminLinks from '../../pages/admin/adminLinks/AdminLinks'
 
 export default function Navbar() {
     return (
@@ -21,10 +22,11 @@ export default function Navbar() {
                 <Link to="/products" className="navbar_item">
                     Women
                 </Link>
-                <Link to="/products" className="navbar_item">
-                    Kids
-                </Link>
+                <Link className="navbar_item" to="/admin/orders">Orders</Link>
             </div>
+            
+            <AdminLinks />
+
             <div className="auth_buttons">
                 <div className="login_btn">
                     <Link to="/login">Login</Link>
@@ -35,5 +37,11 @@ export default function Navbar() {
             </div>
             
         </div>
+
+
+        // <Link className="navbar_item" to="/admin/products">Action</Link>
+        // <Link className="navbar_item" to="/admin/orders">Orders</Link>
+        // <Link className="navbar_item" to="/admin/categories">Categories</Link>
+        // <Link className="navbar_item" to="/admin/categories">Categories</Link>
     )
 }
