@@ -27,6 +27,14 @@ function App() {
                 <Route path="/cart" element={<Cart />}/>
                 <Route path="/products" element={<Products />}/>
                 <Route path="/about" element={<About />}/>
+                <Route path="/login" element={
+                  <ProtectedRoute component={<Login />} auth={true}/>
+                }> 
+                </Route>
+                <Route path="/register" element={
+                  <ProtectedRoute component={<Register />} auth={true}/>
+                }> 
+                </Route>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
                 <Route path="/admin/categories" element={
