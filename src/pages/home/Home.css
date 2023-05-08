@@ -1,16 +1,123 @@
 .main_container {
-  padding: 50px;
-  margin-top: 60px;
+  padding: 0 0 50px 0;
+  margin-top: 65px;
 }
 
-.main_container .item {
+.main_container .item_container {
   display: flex;
   width: 100%;
   align-items: center;
   background: #fff;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
-  padding: 15px;
+  padding: 0 15px 15px 15px;
   margin-bottom: 25px;
+}
+
+.main_container .item_container .home_img {
+  max-width: 100%;
+}
+
+.main_container .hot_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: #fff;
+  padding: 0 139px 0 139px;
+  margin-bottom: 25px;
+}
+
+.main_container .hot_container .hot_img {
+  max-width: 50%;
+  height: auto;
+}
+
+.main_container .hot_container .hot_products {
+  display: flex;
+  flex: 1 0;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.main_container .hot_container .hot_products .hot_product {
+  height: 320px;
+  width: 270px;
+  margin: 0 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.hot_product_img {
+  width: 270px;
+  height: auto;
+}
+
+.main_container .y3_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: #fff;
+  padding: 0 100px 0 100px;
+  margin-bottom: 25px;
+  justify-content: space-evenly;
+}
+
+.main_container .y3_container .y3_products .y3_product{
+  height: 320px;
+  width: 270px;
+  margin: 0 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.main_container .y3_container .y3_img{
+  margin-left: 40px;
+  width: 65%;
+}
+
+.main_container .newbalance_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: #fff;
+  padding: 0 130px 0 130px;
+}
+
+.main_container .newbalance_container .newbalance_img {
+  width: 73%;
+}
+
+.main_container .newbalance_container .newbalance_text .newbalance_title {
+    font-size: 25px;
+    font-weight: 500;
+    text-align: right;
+}
+
+.main_container .newbalance_container .newbalance_text .newbalance_desc {
+      text-align: right;
+}
+
+.main_container .new_title {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.main_container .new_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: #fff;
+  padding: 0 139px 0 139px;
+  margin-bottom: 25px;
+}
+
+.main_container .new_container .new_product {
+  height: 320px;
+  width: 270px;
+  margin: 0 20px;
+  padding-bottom: 20px;
+  text-align: center;
 }
 
 .main_container .item .img_holder {
