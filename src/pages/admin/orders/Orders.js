@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './Orders.css'
 import { DataGrid } from '@mui/x-data-grid';
-import axios from 'axios'
+import axios from 'axios';
 
 export default function Orders() {
 
     const [orders, setOrders] = useState([])
 
     useEffect(() => {  
-    var token = JSON.parse(window.localStorage.getItem('LOCAL_STORAGE_TOKEN'))  
+    var token = JSON.parse(window.localStorage.getItem('LOCAL_STORAGE_TOKEN')); 
     axios.get('https://localhost:7079/Order?PageSize=100&Page=1', { headers: {"Authorization" : `Bearer ${token}`} })
         .then(response => {
             console.log(response)

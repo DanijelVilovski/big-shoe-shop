@@ -1,9 +1,29 @@
 import './Navbar.css';
-import React from 'react'
-import { Link } from 'react-router-dom';
-import AdminLinks from '../../pages/admin/adminLinks/AdminLinks'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { FaUser, FaShoppingCart } from "react-icons/fa"
+import Dropdown from 'react-bootstrap/Dropdown';
+import jwtDecode from 'jwt-decode'
 
 export default function Navbar() {
+
+    const [userInfo, setUserInfo] = useState({})
+
+    var token = window.localStorage.getItem('LOCAL_STORAGE_TOKEN')
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        localStorage.clear();
+        navigate('/login')
+    }
+
+    useEffect(() => {
+        try {
+            setUserInfo(jwtDecode(token))   
+        } catch (error) {
+        }
+    }, [token])
+
     return (
         <div className="navbar">
             <Link to="/" className="logo">
@@ -22,26 +42,39 @@ export default function Navbar() {
                 <Link to="/products" className="navbar_item">
                     Women
                 </Link>
-                <Link className="navbar_item" to="/admin/orders">Orders</Link>
             </div>
-            
-            <AdminLinks />
-
+            <p>
+                {userInfo.Role}
+            </p>
+            {token ? <div className="d-flex">
+                <Dropdown>
+                    <FaShoppingCart className="navbar_icon" id="dropdown-basic"/>                
+                    <Dropdown.Toggle>
+                        <FaUser className="navbar_icon"/>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="navbar_dropdown_menu">
+                        <Dropdown.Item to="/profile" className="navbar_dropdown_item">Profile</Dropdown.Item>
+                        {token && userInfo.Role === 'admin' ? <div>
+                            <Dropdown.Item as={Link}  to="/admin/orders" className="navbar_dropdown_item">Manage orders</Dropdown.Item>
+                            <Dropdown.Item as={Link}  to="/admin/categories" className="navbar_dropdown_item">Manage categories</Dropdown.Item>
+                            <Dropdown.Item as={Link}  to="/admin/users" className="navbar_dropdown_item">Manage users</Dropdown.Item>
+                        </div>
+                        : ""
+                        }
+                        <Dropdown.Item to="/login" className="navbar_dropdown_item" onClick={logOut}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div> 
+            : 
             <div className="auth_buttons">
                 <div className="login_btn">
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" className="navbar_item">Login</Link>
                 </div>
                 <div className="login_btn">
-                    <Link to="/register">Register</Link>
+                    <Link to="/register" className="navbar_item">Register</Link>
                 </div>
             </div>
-            
+            }    
         </div>
-
-
-        // <Link className="navbar_item" to="/admin/products">Action</Link>
-        // <Link className="navbar_item" to="/admin/orders">Orders</Link>
-        // <Link className="navbar_item" to="/admin/categories">Categories</Link>
-        // <Link className="navbar_item" to="/admin/categories">Categories</Link>
     )
 }

@@ -6,10 +6,8 @@ export default function Login() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate() 
+    const navigate = useNavigate();
 
-    //eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6Im5vdml1c2VyIiwiVXNlcklkIjoiMTIiLCJSb2xlIjoiY2xpZW50IiwiZXhwIjoxNjgzMTA3NDg2fQ.p7VWllmK6WLLU9fwVT7c-xPBJE_OiCm_fVYBuAOt_m7qcd6QYFz5_d-jBGpwLlAhvb9bG66LaLAzMeBe8X44xw
-    //eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6Im5vdml1c2VyIiwiVXNlcklkIjoiMTIiLCJSb2xlIjoiY2xpZW50IiwiZXhwIjoxNjgzMTA4MjI1fQ.LuO2WadumQIC8lvqX-vrOHIYAn8txEUmwPCoQEeNZevh-VL5IVAQ_iEOUJxgGSbZvwg4vZut6ebv9qgz6I2a3w
     const handleSubmit = e => {
         e.preventDefault();
         const object = {
@@ -26,16 +24,12 @@ export default function Login() {
         .then((response) => response.json())
         .then((json) => {
             if(json.status === 200) {
-                console.log(json)
-                console.log("DANIJEL: " + json.transferObject)
                 localStorage.setItem('LOCAL_STORAGE_TOKEN', JSON.stringify(json.transferObject))
                 navigate('/')
             } else if (json.status === 404){
-                console.log(json)
                 document.getElementById('login-username-span').innerHTML = json.message;
                 document.getElementById('login-password-span').innerHTML = '';
                 } else if (json.status === 401) {
-                console.log(json)
                 document.getElementById('login-password-span').innerHTML = json.message;
                 document.getElementById('login-username-span').innerHTML = '';
 

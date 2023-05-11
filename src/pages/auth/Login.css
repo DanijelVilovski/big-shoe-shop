@@ -1,5 +1,5 @@
 .login_container {
-    padding: 100px;
+    padding: 50px;
     margin-top: 30px;
 }
 
@@ -39,6 +39,7 @@
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
+    color: #fff;
 }
 
 .login_form .login_form_span {
@@ -126,6 +127,7 @@
         margin-top: 8px;
         font-size: 14px;
         font-weight: 300;
+        color: #fff;
     }
 
     .login_form .login_form_span {

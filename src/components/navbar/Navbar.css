@@ -3,13 +3,24 @@
   height: 65px;
   display: flex;
   justify-content: space-between;
-  padding: 0 50px;
+  padding: 0 50px !important;
   align-items: center;
-  position: fixed;
+  position: fixed !important;
   width: 100%;
   top: 0;
   left: 0;
   z-index: 1;
+}
+
+.navbar_icon {
+  color: white;
+  margin-right: 8px;
+}
+
+.navbar_icon:hover {
+  transition: all 0.3s ease;
+  color:  rgb(231, 125, 125);
+  margin-right: 8px;
 }
 
 .navbar .logo {
@@ -17,6 +28,7 @@
   font-weight: 700;
   color: #fff;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .navbar .auth_buttons {
@@ -28,12 +40,38 @@
   justify-content: space-between;
 }
 
-.navbar .links_container .navbar_item {
+.navbar_item {
   margin-left: 40px;
   margin-right: 40px;
   font-size: 18px;
   font-weight: 500;
   color: #fff;
+  text-decoration: none;
+}
+
+.navbar_dropdown_item {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+}
+
+.admin_dropdown {
+  color: #222222 !important;
+  border: none !important;
+  margin: 0;
+  font-weight: 500;
+}
+
+.dropdown-toggle {
+  padding: 0 !important;
+  margin-left: 10px;
+  background-color: #222222 !important;
+  border: none !important;
+}
+
+.dropdown-toggle:after {
+  content: none !important;
 }
 
 .navbar .links_container .navbar_item:hover {
@@ -62,16 +100,46 @@
 }
 
 @media (max-width:768px) {
+  .navbar {
+    background: #222222;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
   .navbar .logo{
       font-size: 15px;
+      text-decoration: none;
     }
 
-  .navbar .navbar_container .navbar_item {
-    font-size: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-weight: 500;
-    color: #fff;
+  .navbar_item {
+  margin-left: 40px;
+  margin-right: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  }
+
+  .navbar_dropdown_menu {
+    background-color: #222222 !important; 
+    color: #fff !important;
+    font-weight: 500 !important;
+  }
+
+  .navbar_dropdown_item {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  background-color: #222222 !important;
   }
 
   .navbar .login_btn a {
@@ -83,5 +151,16 @@
     transition: all 0.3s ease;
     font-size: 10px;
     margin-left: 5px;
+  }
+
+  .navbar_icon {
+  color: white;
+  margin-right: 8px;
+  }
+
+  .navbar_icon:hover {
+    transition: all 0.3s ease;
+    color:  rgb(231, 125, 125);
+    margin-right: 8px;
   }
 }

@@ -30,14 +30,11 @@ export default function Register() {
         .then((response) => response.json())
         .then((json) => {
             if(json.status === 200) {
-                console.log(json) 
                 navigate('/login');
             } else if (json.status === 409) {
-                console.log(json) 
                 document.getElementById('register-username-span').innerHTML = json.message;        
                 document.getElementById('register-email-span').innerHTML = "";        
             } else if (json.status === 400) {
-                console.log(json) 
                 document.getElementById('register-email-span').innerHTML = json.message;  
                 document.getElementById('register-username-span').innerHTML = "";        
             }
