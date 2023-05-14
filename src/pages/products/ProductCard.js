@@ -1,16 +1,24 @@
-import React from 'react'
 import './ProductCard.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
+
+    let priceFormat = new Intl.NumberFormat('sr-Latn-RS', {
+        style: 'currency',
+        currency: 'RSD',
+        currencyDisplay: 'narrowSymbol',
+        minimumFractionDigits: 2
+    });
+
     return (
-        // <div className="product">
-        //     {product.name}
-        //     {product.size}
-        // </div>
-        <div className="new_product">
-            <img src="images/y3_ajatu_run.jpg" className="hot_product_img" alt=""/>
-            NIKE PATIKE AIR JORDAN 3 RETRO
-            28.399,00 RSD
-        </div>
+        <Link to={"/product/" + product.id } className="product_card_link">
+            <div className="new_product">
+                <img src="images/y3_ajatu_run.jpg" className="hot_product_img" alt="" />
+                {product.name.toUpperCase()}
+                <br></br>
+                {priceFormat.format(product.price)}
+            </div>
+        </Link>
     )
 }
