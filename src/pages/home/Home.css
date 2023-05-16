@@ -106,7 +106,7 @@
 .main_container .new_container {
   display: flex;
   width: 100%;
-  align-items: center;
+  justify-content: center;
   background: #fff;
   padding: 0 139px 0 139px;
   margin-bottom: 25px;

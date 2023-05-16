@@ -6,6 +6,7 @@ import Home from './pages/home/Home';
 import Cart from './pages/cart/Cart';
 import ProtectedRoute from './components/protected/ProtectedRoute';
 import Products from './pages/products/Products';
+import SingleProduct from './pages/products/SingleProduct';
 import About from './pages/about/About';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -24,8 +25,9 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/cart" element={<Cart />}/>
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/products" element={<Products />}/>
+                <Route path="/product/:id" element={<SingleProduct />}/>
                 <Route path="/about" element={<About />}/>
                 <Route path="/login" element={
                   <ProtectedRoute component={<Login />} auth={true}/>

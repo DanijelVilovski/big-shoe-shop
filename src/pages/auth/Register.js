@@ -62,7 +62,7 @@ export default function Register() {
                 .then(response => {
                     axios.post('https://localhost:7079/Order/addOrder', {
                         userId: Number(token.UserId),
-                        orderDate: '2023-05-14',
+                        orderDate: new Date(),
                         userAddressId: response.data.transferObject.id,
                         shippingMethodId: 1,
                         orderStatusId: 1,
@@ -80,33 +80,6 @@ export default function Register() {
         .catch(function (error) {
             console.log(error);
         });
-
-
-        // axios.get(`https://localhost:7079/UserAddress/useraddress/${Number(token.UserId)}`)
-        // .then(response => {
-        //     console.log(response.data)
-        //     setAddedAddress(response.data)
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // })
-
-
-
-        // axios.post('https://localhost:7079/Order/addOrder', {
-        //     userId: Number(token.UserId),
-        //     orderDate: '2023-05-14',
-        //     userAddressId: addedAddress.transferObject.id,
-        //     shippingMethodId: 1,
-        //     orderStatusId: 1,
-        //     orderTotal: 0
-        // })
-        // .then(function (response) {
-        //     console.log(response);
-        // })
-        // .catch(function (error) {
-        //     console.log(error);
-        // });
     }
 
     return (

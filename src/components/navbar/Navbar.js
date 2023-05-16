@@ -43,12 +43,11 @@ export default function Navbar() {
                     Women
                 </Link>
             </div>
-            <p>
-                {userInfo.Role}
-            </p>
             {token ? <div className="d-flex">
                 <Dropdown>
-                    <FaShoppingCart className="navbar_icon" id="dropdown-basic"/>                
+                    <Link to="/cart">
+                        <FaShoppingCart className="navbar_icon" id="dropdown-basic"/>                
+                    </Link>
                     <Dropdown.Toggle>
                         <FaUser className="navbar_icon"/>
                     </Dropdown.Toggle>
