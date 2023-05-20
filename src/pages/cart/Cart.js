@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import './Cart.css'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import './Cart.css'
 import { priceFormat } from '../../components/common/priceFormat'
 import jwtDecode from 'jwt-decode'
 import CartTable from './CartTable';

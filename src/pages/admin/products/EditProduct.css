@@ -1,0 +1,23 @@
+.editProduct_container {
+  padding: 50px 120px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.editProduct_container .product-edit-image{
+    width: 50%;
+}
+
+.editProduct_container .product-edit-info{
+    width: 50%;
+}
+
+.desc-input {
+    width: 100% !important;
+    margin: 20px 0 20px 0;
+}
+
+.select-input {
+    width: 47%;
+    margin-bottom: 20px;
+}

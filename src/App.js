@@ -14,6 +14,7 @@ import AdminCategories from './pages/admin/categories/AdminCategories';
 import Orders from './pages/admin/orders/Orders';
 import AdminProducts from './pages/admin/products/AdminProducts';
 import Users from './pages/admin/users/Users';
+import EditProduct from './pages/admin/products/EditProduct';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
                   <ProtectedRoute component={<AdminProducts />} />
                 }> 
                 </Route>
+                <Route path="/admin/products/edit/:id" element={<EditProduct />}/>
                 <Route path="/admin/orders" element={
                   <ProtectedRoute component={orders} />
                 }> 
