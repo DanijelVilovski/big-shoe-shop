@@ -32,11 +32,8 @@ export default function Login() {
                 } else if (json.status === 401) {
                 document.getElementById('login-password-span').innerHTML = json.message;
                 document.getElementById('login-username-span').innerHTML = '';
-
             }
-        });
-        
-        
+        });       
     }
 
     return (

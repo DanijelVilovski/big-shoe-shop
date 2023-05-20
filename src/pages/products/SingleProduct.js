@@ -24,7 +24,7 @@ export default function SingleProduct() {
     }, [token])
 
     useEffect(() => {
-    axios.get('https://localhost:7079/productSizes?productId=' + id)
+    axios.get('https://localhost:7079/Size/productSizes?productId=' + id)
         .then(response => {
         setSizes(response.data);
         })
