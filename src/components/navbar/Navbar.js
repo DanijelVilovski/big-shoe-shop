@@ -34,9 +34,6 @@ export default function Navbar() {
                     New
                 </Link>
                 <Link to="/products" className="navbar_item">
-                    Sports
-                </Link>
-                <Link to="/products" className="navbar_item">
                     Men
                 </Link>
                 <Link to="/products" className="navbar_item">
@@ -52,12 +49,12 @@ export default function Navbar() {
                         <FaUser className="navbar_icon"/>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="navbar_dropdown_menu">
-                        <Dropdown.Item to="/profile" className="navbar_dropdown_item">Profile</Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/profile" className="navbar_dropdown_item">Profile</Dropdown.Item>
                         {token && userInfo.Role === 'admin' ? <div>
-                            <Dropdown.Item as={Link}  to="/admin/products" className="navbar_dropdown_item">Manage products</Dropdown.Item>
-                            <Dropdown.Item as={Link}  to="/admin/orders" className="navbar_dropdown_item">Manage orders</Dropdown.Item>
-                            <Dropdown.Item as={Link}  to="/admin/categories" className="navbar_dropdown_item">Manage categories</Dropdown.Item>
-                            <Dropdown.Item as={Link}  to="/admin/users" className="navbar_dropdown_item">Manage users</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/products" className="navbar_dropdown_item">Manage products</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/orders" className="navbar_dropdown_item">Manage orders</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/categories" className="navbar_dropdown_item">Manage categories</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/users" className="navbar_dropdown_item">Manage users</Dropdown.Item>
                         </div>
                         : ""
                         }

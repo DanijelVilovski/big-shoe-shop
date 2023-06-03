@@ -9,7 +9,7 @@ export default function AdminCategories() {
 
     useEffect(() => {
     var token = JSON.parse(window.localStorage.getItem('LOCAL_STORAGE_TOKEN')) 
-    axios.get('https://localhost:7079/Category?PageSize=100&Page=1', { headers: {"Authorization" : `Bearer ${token}`} })
+    axios.get('http://localhost:7079/Category?PageSize=100&Page=1', { headers: {"Authorization" : `Bearer ${token}`} })
         .then(response => {
             setCategories(response.data.data)
         })

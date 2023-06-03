@@ -4,6 +4,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode'
 import { priceFormat } from '../../components/common/priceFormat'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SingleProduct() {
     const [isLoading, setLoading] = useState(true);
@@ -15,6 +17,32 @@ export default function SingleProduct() {
 
     var token = window.localStorage.getItem('LOCAL_STORAGE_TOKEN')
     const { id } = useParams();
+
+    const choose_size = () => {
+        toast.error('Please choose size first', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        });
+    }
+
+    const successfully_added = () => {
+        toast.success('Successfully added to cart', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        });
+    }
     
     useEffect(() => {
         try {
@@ -24,7 +52,7 @@ export default function SingleProduct() {
     }, [token])
 
     useEffect(() => {
-    axios.get('https://localhost:7079/Size/productSizes?productId=' + id)
+    axios.get('http://localhost:7079/Size/productSizes?productId=' + id)
         .then(response => {
         setSizes(response.data);
         })
@@ -32,7 +60,7 @@ export default function SingleProduct() {
         console.log(err)
         }) 
 
-    axios.get('https://localhost:7079/Product/' + id)
+    axios.get('http://localhost:7079/Product/' + id)
         .then(response => {
         setProduct(response.data.transferObject);
         setLoading(false);
@@ -60,7 +88,7 @@ export default function SingleProduct() {
 
     const handleAddToCart = () => {
         if(activeSize == undefined){
-            alert("Please choose size first! TOASTERTOASTERTOASTER" )
+            choose_size();
         } else {
             var cartSizeId = 0;
             sizes.forEach(size => {
@@ -74,9 +102,9 @@ export default function SingleProduct() {
                 }
             }
 
-            axios.get(`https://localhost:7079/Order/userId/${userInfo.UserId}`)
+            axios.get(`http://localhost:7079/Order/userId/${userInfo.UserId}`)
             .then(response => {
-                axios.post('https://localhost:7079/CartItem/addCartItem', {
+                axios.post('http://localhost:7079/CartItem/addCartItem', {
                 orderId: JSON.stringify(response.data.transferObject.id),
                 productId: product.id,
                 sizeId: cartSizeId,
@@ -84,7 +112,7 @@ export default function SingleProduct() {
                 isDeleted: false
                 }, config)
                 .then(response => {
-                    alert("Successfully added to cart!")
+                    successfully_added();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -97,43 +125,47 @@ export default function SingleProduct() {
     }
 
     return (
-        <div className="single_product_container">
-            <div className="single_product_image_div">
-                <img src="/images/y3_ajatu_run.jpg" className="single_product_image" clasalt="ddd" />
-            </div>
-            <div className="single_product_info">
-                <div className="single_product_name">{product.brand.name} {product.name.toUpperCase()}</div>
-                <div className="single_product_category">{product.category.name}</div>
-                <div className="single_product_price">{priceFormat(product.price)}</div>
-                <div className="single_product_sizes">
-                    <div className="choose">Choose size: <b>{activeSize}</b></div>
-                    <div className="d-flex sizes">
-                        {sizes.map(size => {
-                            return (
-                                <div 
-                                className="size" 
-                                id={`size${size.eu}`}
-                                key={size.id}
-                                title={`Size EU: ${size.eu} Size UK: ${size.uk} Size US: ${size.us} Size in cm: ${size.cm}`}
-                                onClick={() => setActive(size.eu)}
-                                >
-                                    {size.eu} {size.cm}
-                                
-                                </div>
-                            )
-                        })}
+        <div>
+            <ToastContainer />
+            {product ? (
+                <div className="single_product_container">   
+                    <div className="single_product_image_div">
+                        <img src={`/images/${product.imageUrl}`} className="single_product_image" clasalt="ddd" />
+                    </div>
+                    <div className="single_product_info">
+                        <div className="single_product_name">{product.brand.name} {product.name.toUpperCase()}</div>
+                        <div className="single_product_category">{product.category.name}</div>
+                        <div className="single_product_price">{priceFormat(product.price)}</div>
+                        <div className="single_product_sizes">
+                            <div className="choose">Choose size: <b>{activeSize}</b></div>
+                            <div className="d-flex sizes">
+                                {sizes.map(size => {
+                                    return (
+                                        <div 
+                                        className="size" 
+                                        id={`size${size.eu}`}
+                                        key={size.id}
+                                        title={`Size EU: ${size.eu} Size UK: ${size.uk} Size US: ${size.us} Size in cm: ${size.cm}`}
+                                        onClick={() => setActive(size.eu)}
+                                        >
+                                            {size.eu} {size.cm}
+                                        
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        {token ? 
+                        <div className="buttons">
+                            <input className="input_quantity" type="number" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                            <button className="btn add_to_cart_button" onClick={handleAddToCart}>Add to cart</button>
+                        </div>
+                        :
+                        <div className="add_to_cart_not_logged">Log in to be able to add product to cart</div>
+                        }
                     </div>
                 </div>
-                {token ? 
-                <div className="buttons">
-                    <input className="input_quantity" type="number" value={quantity} onChange={e => setQuantity(e.target.value)} />
-                    <button className="btn add_to_cart_button" onClick={handleAddToCart}>Add to cart</button>
-                </div>
-                
-                :
-                <div className="add_to_cart_not_logged">Log in to be able to add product to cart</div>
-                }
-            </div>
+                ) : "" }
         </div>
     );
 }

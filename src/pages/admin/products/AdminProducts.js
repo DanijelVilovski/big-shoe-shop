@@ -3,8 +3,8 @@ import axios from 'axios';
 import './AdminProducts.css'
 import { TiDeleteOutline } from "react-icons/ti"
 import { FiEdit3 } from "react-icons/fi"
+import { IoIosAddCircleOutline } from "react-icons/io"
 import { priceFormat } from '../../../components/common/priceFormat'
-import EditProduct from './EditProduct';
 import { Link } from 'react-router-dom';
 
 
@@ -26,50 +26,55 @@ export default function AdminProducts() {
             })
     }
 
-    const editProduct = (product) => {
-        return <EditProduct product={product} />
+    const deleteProduct = id => {
+        axios.delete(`https://localhost:7079/Product/${id}`)
+            .then(response => {
+                window.location.reload();
+                return alert(response.data.message)
+            })
+            .catch(err => {
+                return alert(err.message)
+            })
+        
     }
 
     return (
         <div className="admin_products_container">
+            <h3 className="manage-products-title">Manage Products</h3>
+            <div className="d-flex justify-content-end">
+                <Link to={`/admin/products/add`}>
+                    <button className="btn btn-primary manage-products-add-btn">
+                        <IoIosAddCircleOutline className="add_icon" /> Add new product
+                    </button>
+                </Link>
+            </div>
             <div className="row">
                 <p className="col-sm-1">Id</p>
-                <p className="col-sm-2">Name</p>
                 <p className="col-sm-2">Brand</p>
-                <p className="col-sm-2">Description</p>
-                <p className="col-sm-1">In stock</p>
+                <p className="col-sm-2">Name</p>
+                <p className="col-sm-4">Description</p>
                 <p className="col-sm-2">Price</p>
-                <p className="col-sm-2">Actions</p>
+                <p className="col-sm-1">Actions</p>
             </div>
             {products && products.map(product => {
                 return (
                     <div key={product.id}>
                         <div className="row">
                             <p className="col-sm-1">{product.id}</p>
+                            <p className="col-sm-2">{product.brand.name}</p>
                             <p className="col-sm-2">{product.name}</p>
-                            <p className="col-sm-2">{product.brand}</p>
-                            <p title={product.desc} className="col-sm-2 product_desc">{product.desc}</p>
-                            <p className="col-sm-1">{product.inStock}</p>
+                            <p title={product.desc} className="col-sm-4 product_desc">{product.desc}</p>
                             <p className="col-sm-2">{priceFormat(product.price)}</p>
-                            <p className="col-sm-2">
+                            <p className="col-sm-1">
                                 <Link to={`/admin/products/edit/${product.id}`} state={{ product }}>
                                     <FiEdit3 className="edit_icon" />
                                 </Link>
-                                <TiDeleteOutline onClick={e => editProduct(product)} className="delete_icon" />
+                                <TiDeleteOutline onClick={e => deleteProduct(product.id)} className="delete_icon" />
                             </p>
                             
                         </div>
                         <hr />
                     </div>
-                    // <Link to={"/product/" + product.id } className="product_card_link">
-                    //     <div className="new_product">
-                    //         <img src="images/y3_ajatu_run.jpg" className="hot_product_img" alt="" />
-                    //         {product.name.toUpperCase()}
-                    //         <br></br>
-                    //         {priceFormat(product.price)}
-                    //     </div>
-                    // </Link>
-                    
                 )
             })}
         </div>

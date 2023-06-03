@@ -3,40 +3,38 @@ import { useParams } from 'react-router-dom';
 import './EditProduct.css'
 import axios from 'axios';
 
-export default function EditProduct(props) {
+export default function AddProduct(props) {
     
     const [product, setProduct] = useState();
     const [brands, setBrands] = useState();
     const [categories, setCategories] = useState();
+    const [selectedImage, setSelectedImage] = useState(null);
 
-    const [price, setPrice] = useState();
-    const [name, setName] = useState();
-    const [description, setDescription] = useState();
+    const [price, setPrice] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
     const [category, setCategory] = useState();
     const [brand, setBrand] = useState();
 
-
-    const { id } = useParams();
-
     useEffect(() => {
-        GetProduct();
+        //GetProduct();
         GetBrands();
         GetCategories();
     }, [])
 
-    function GetProduct() {
-        axios.get('http://localhost:7079/Product/' + id)
-            .then(response => {
-            setProduct(response.data.transferObject);
-            setProduct(response.data.transferObject);
-            setName(response.data.transferObject.name);
-            setPrice(response.data.transferObject.price);
-            setDescription(response.data.transferObject.desc);
-            })
-            .catch(err => {
-            console.log(err)
-            }) 
-    }
+    // function GetProduct() {
+    //     axios.get('https://localhost:7079/Product/' + id)
+    //         .then(response => {
+    //         setProduct(response.data.transferObject);
+    //         setProduct(response.data.transferObject);
+    //         setName(response.data.transferObject.name);
+    //         setPrice(response.data.transferObject.price);
+    //         setDescription(response.data.transferObject.desc);
+    //         })
+    //         .catch(err => {
+    //         console.log(err)
+    //         }) 
+    // }
 
     function GetBrands() {
         axios.get('http://localhost:7079/Brand?PageSize=1000&Page=1')
@@ -79,15 +77,13 @@ export default function EditProduct(props) {
         });
 
         var imageUrl;
-
         if(selectedImage != null) {
-            imageUrl = selectedImage.name
+            imageUrl = selectedImage.name 
         } else {
-            imageUrl = product.imageUrl
+            return alert("YOU NEED TO CHOOSE IMAGE")
         }
 
         const dataIn = {
-            "id": id,
             "categoryId": categoryId,
             "brandId": brandId,
             "name": name,
@@ -95,8 +91,9 @@ export default function EditProduct(props) {
             "price": price,
             "imageUrl": imageUrl
         }
+        console.log(dataIn)
         axios
-        .put('http://localhost:7079/Product/editProduct/' + id, dataIn)
+        .post('http://localhost:7079/Product/addproduct', dataIn)
         .then(response => {
             console.log(response)
             window.location.reload();
@@ -106,16 +103,16 @@ export default function EditProduct(props) {
         })
     }
 
-    const [selectedImage, setSelectedImage] = useState(null);
-
     return (
         <div className="editProduct_container">
-            <h3>Edit Product</h3>
-            {product && categories && brands ? (
+            <h3>Add Product</h3>
+            {categories && brands ? (
             <div className="card">
+
                 <div className="card-body d-flex">
                     <div className="product-edit-image"> 
                         <input
+                            required
                             className="form-control"
                             type="file"
                             name="myImage"
@@ -125,33 +122,20 @@ export default function EditProduct(props) {
                             setSelectedImage(event.target.files[0]);
                             }}
                         />
-                        <div className="d-flex m-3">
-                            <p>New product's image: </p>
-                            {selectedImage && (
-                                <div>
-                                <img
-                                    alt="not found"
-                                    width={"250px"}
-                                    src={URL.createObjectURL(selectedImage)}
-                                />
-                                <br />
-                                <button onClick={() => {
-                                    setSelectedImage(null)
-                                    document.getElementById('image_input').value = null
-                                }} className="btn btn-primary">Remove</button>
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="d-flex m-3">
-                            <p>Old product's image: </p>
+                        {selectedImage && (
+                            <div>
                             <img
                                 alt="not found"
                                 width={"250px"}
-                                src={`/images/${product.imageUrl}`}
+                                src={URL.createObjectURL(selectedImage)}
                             />
-                        </div>
-
+                            <br />
+                            <button onClick={() => {
+                                setSelectedImage(null)
+                                document.getElementById('image_input').value = null
+                            }} className="btn btn-primary">Remove</button>
+                            </div>
+                        )}
                     </div>
                     <div className="product-edit-info"> 
                         <form onSubmit={handleSubmit}>
@@ -183,7 +167,6 @@ export default function EditProduct(props) {
                                 <div className="form-group select-input">
                                     <label htmlFor="name">Brand</label>
                                     <select className="form-control" id="select-brand-id">
-                                        <option>{product.brand.name}</option>
                                         {brands.map(brand => {
                                             return (
                                                 <option 
@@ -200,7 +183,6 @@ export default function EditProduct(props) {
                                 <div className="form-group select-input">
                                     <label htmlFor="name">Category</label>
                                     <select className="form-control" id="select-category-id">
-                                        <option>{product.category.name}</option>
                                         {categories.map(category => {
                                             return (
                                                 <option 
@@ -216,13 +198,7 @@ export default function EditProduct(props) {
                                     </select>
                                 </div>
                             </div>
-                            {/* <p>{product.id}</p>
-                            <p>{product.name}</p>
-                            <p>{product.brand.name}</p>
-                            <p>{product.name}</p>
-                            <p>{product.name}</p> */}
-                            <button className="edit_product_form_button btn btn-danger" type="submit">Update product</button>
-
+                            <button className="edit_product_form_button btn btn-danger" type="submit">Add product</button>
                         </form>
 
                     </div>

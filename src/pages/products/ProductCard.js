@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
     return (
         <Link to={"/product/" + product.id } className="product_card_link">
             <div className="new_product">
-                <img src="images/y3_ajatu_run.jpg" className="hot_product_img" alt="" />
+                <img src={`images/${product.imageUrl}`} className="hot_product_img" alt="" />
                 {product.name.toUpperCase()}
                 <br></br>
                 {priceFormat(product.price)}

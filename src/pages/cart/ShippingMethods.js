@@ -6,14 +6,21 @@ import { TiDeleteOutline } from "react-icons/ti"
 export default function ShippingMethods(props) {
     return (
         <>
-            {props.shippingMethods.map(shippingMethod => {
-                return (
-                    <div className="form-check" key={shippingMethod.id}>
-                        <label className="form-check-label" htmlFor="shipping-method-">{shippingMethod.name}</label>
-                        <input className="form-check-input" type="radio" name="exampleRadios" id={`shipping-method-${shippingMethod.id}`} value="option1" />
-                    </div>
-                )
-            })}
+            <label></label>
+            <select className="form-control" id="select-shippingmethod-id">
+                <option disabled>-Select shipping method-</option>
+                {props.shippingMethods.map(shippingMethod => {
+                    return (
+                        <option 
+                            key={shippingMethod.id} 
+                            value={shippingMethod.id} 
+                            id={shippingMethod.id}
+                        >
+                            {shippingMethod.name} 
+                        </option>
+                    )
+                })}
+            </select>
         </>
     )
 }

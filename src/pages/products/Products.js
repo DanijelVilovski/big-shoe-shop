@@ -15,7 +15,7 @@ function Products() {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-  axios.get('https://localhost:7079/Product?PageSize=20&Page=1')
+  axios.get('http://localhost:7079/Product?PageSize=12&Page=1')
     .then(response => {
       setProducts(response.data.data);
     })
@@ -23,7 +23,7 @@ function Products() {
       console.log(err)
     })
 
-  axios.get('https://localhost:7079/Brand?PageSize=100&Page=1')
+  axios.get('http://localhost:7079/Brand?PageSize=100&Page=1')
     .then(response => {
       setBrands(response.data.data);
     })
@@ -31,7 +31,7 @@ function Products() {
       console.log(err)
     })
 
-  axios.get('https://localhost:7079/Category?PageSize=100&Page=1')
+  axios.get('http://localhost:7079/Category?PageSize=100&Page=1')
     .then(response => {
       setCategories(response.data.data);
     })
@@ -69,6 +69,20 @@ function Products() {
     setCategoryFilter(false)
   }
 
+  const handleProductsPerPageChange = () => {
+    var number = document.getElementById('products-per-page').value
+    var page = document.getElementById('pagination-page').value
+    
+    console.log(number)
+    axios.get(`http://localhost:7079/Product?PageSize=${number}&Page=${page}`)
+    .then(response => {
+      setProducts(response.data.data);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  } 
+
   return (
     <div className="products_container">
         <div className="filters_container">
@@ -79,8 +93,13 @@ function Products() {
             <div onClick={handleSizeFilter} className="filter">Size</div>
           </div>
           <div className="filters_group2"> 
-            <p className="filter_text">Sort by</p>
-            <div className="filter">Newest</div>
+            <p className="filter_text" >Sort by</p>
+            <select className="">
+              <option>Newest</option>
+              <option>Price ascending</option>
+              <option>Price descending</option>
+            </select>
+
           </div>
         </div>
         {categoryFilter && <div className="filter_expanded_container">
@@ -115,12 +134,32 @@ function Products() {
           Size
         </div>}
         <hr></hr>
-        
-        
+
         <div className="products_div">
             {products.map(product => {
               return <ProductCard key={product.id} product={product}/>
             })}
+        </div>
+
+        <div className="pagination">
+          <div>
+            <label>Page:</label>
+            <select type="number" className="form-control" id="pagination-page" onChange={handleProductsPerPageChange}> 
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <div className="products-per-page-div">
+            <label>Number of Products:</label>
+            <select type="number" className="form-control" id="products-per-page" onChange={handleProductsPerPageChange}> 
+              <option>4</option>
+              <option>8</option>
+              <option selected>12</option>
+              <option>16</option>
+            </select>
+          </div>
         </div>
     </div>
   );

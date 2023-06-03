@@ -21,9 +21,10 @@ export default function Register() {
             username,
             password,
             firstName,
-            lastName
+            lastName,
+            phone: ""
         }
-        fetch('https://localhost:7079/User/register', {
+        fetch('http://localhost:7079/User/register', {
         method: 'POST',
         body: JSON.stringify(response),
         headers: {
@@ -48,7 +49,7 @@ export default function Register() {
     }
 
     const setOrderAndAddress = () => {
-        axios.post('https://localhost:7079/UserAddress/addUserAddress', {
+        axios.post('http://localhost:7079/UserAddress/addUserAddress', {
             userId: Number(token.UserId),
             address: null,
             city: null,
@@ -58,15 +59,13 @@ export default function Register() {
         })
         .then(response => {
             if(response.status === 200) {
-                axios.get(`https://localhost:7079/UserAddress/useraddress/${Number(token.UserId)}`)
+                axios.get(`http://localhost:7079/UserAddress/useraddress/${Number(token.UserId)}`)
                 .then(response => {
-                    axios.post('https://localhost:7079/Order/addOrder', {
+                    axios.post('http://localhost:7079/Order/addOrder', {
                         userId: Number(token.UserId),
                         orderDate: new Date(),
-                        userAddressId: response.data.transferObject.id,
                         shippingMethodId: 1,
-                        orderStatusId: 1,
-                        orderTotal: 0
+                        orderStatusId: 1
                     })
                     .catch(function (error) {
                         console.log(error);

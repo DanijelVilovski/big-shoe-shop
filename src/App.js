@@ -13,8 +13,10 @@ import Register from './pages/auth/Register';
 import AdminCategories from './pages/admin/categories/AdminCategories';
 import Orders from './pages/admin/orders/Orders';
 import AdminProducts from './pages/admin/products/AdminProducts';
+import Profile from './pages/profile/Profile';
 import Users from './pages/admin/users/Users';
 import EditProduct from './pages/admin/products/EditProduct';
+import AddProduct from './pages/admin/products/AddProduct';
 
 function App() {
 
@@ -53,6 +55,8 @@ function App() {
                 }> 
                 </Route>
                 <Route path="/admin/products/edit/:id" element={<EditProduct />}/>
+                <Route path="/profile" element={<Profile />}/>
+                <Route path="/admin/products/add" element={<AddProduct />}/>
                 <Route path="/admin/orders" element={
                   <ProtectedRoute component={orders} />
                 }> 

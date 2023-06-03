@@ -14,7 +14,7 @@ export default function Login() {
             username,
             password,
         }
-        fetch('https://localhost:7079/User/login', {
+        fetch('http://localhost:7079/User/login', {
         method: 'POST',
         body: JSON.stringify(object),
         headers: {

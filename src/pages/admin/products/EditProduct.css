@@ -1,15 +1,17 @@
 .editProduct_container {
-  padding: 50px 120px;
+  padding: 30px 120px;
   margin-top: 60px;
   text-align: center;
 }
 
 .editProduct_container .product-edit-image{
     width: 50%;
+    margin-right: 8px;
 }
 
 .editProduct_container .product-edit-info{
     width: 50%;
+    margin-left: 8px;
 }
 
 .desc-input {
